@@ -63,6 +63,7 @@ public class AddBookServlet extends HttpServlet {
 		os.write(json.getBytes("UTF-8"));
 		os.flush();
 		System.out.println("----" + out.toString());
+		
 	}
 
 	protected void doPost(HttpServletRequest request,
