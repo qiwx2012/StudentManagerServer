@@ -30,7 +30,6 @@ public class AddBookServlet extends HttpServlet {
 
 	public AddBookServlet() {
 		super();
-
 	}
 
 	protected void doGet(HttpServletRequest request,
@@ -49,9 +48,16 @@ public class AddBookServlet extends HttpServlet {
 		if (book != null) {
 			UserDao uDao = new UserDaoImpl();
 			List<Book> dataList = uDao.addBook(book);
-			rjJson.setMessage("成功");
-			rjJson.setStatus(200);
-			rjJson.setData(dataList);
+			if (dataList != null && dataList.size() > 0) {
+				rjJson.setMessage("成功");
+				rjJson.setStatus(200);
+				rjJson.setData(dataList);
+			} else {
+				rjJson.setMessage("失败");
+				rjJson.setStatus(-100);
+				rjJson.setData(null);
+			}
+
 		} else {
 			rjJson.setMessage("失败");
 			rjJson.setStatus(-100);
@@ -63,7 +69,7 @@ public class AddBookServlet extends HttpServlet {
 		os.write(json.getBytes("UTF-8"));
 		os.flush();
 		System.out.println("----" + out.toString());
-		
+
 	}
 
 	protected void doPost(HttpServletRequest request,

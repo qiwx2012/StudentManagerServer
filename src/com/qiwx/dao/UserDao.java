@@ -20,5 +20,7 @@ public interface UserDao {
 	public List<Book> addBook(Book book);
 	// 删除记录
 	public List<Book> deleteBook(int bookId);
+	//查询操作
+	public  List<Book>selectBook();
 
 }
