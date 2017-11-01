@@ -53,7 +53,7 @@ public class UserDaoImpl implements UserDao {
 	}
 	@Override
 	public List<Book> addBook(Book book) {
-		String sql = "insert into book values(?,?,?)";
+		String sql = "insert into book values(?,?,?,?)";
 		List<Book> dataList = new ArrayList<>();
 		try {
 			// 执行插入操作后在执行查询操作
@@ -61,6 +61,7 @@ public class UserDaoImpl implements UserDao {
 			pStatement.setInt(1, book.getBookId());
 			pStatement.setString(2, book.getBookName());
 			pStatement.setDouble(3, book.getBookPrice());
+			pStatement.setString(4, "/img/123.png");
 			pStatement.executeUpdate();
 			dataList = selectBook();
 			return dataList;
@@ -82,7 +83,7 @@ public class UserDaoImpl implements UserDao {
 		try {
 			// 执行插入操作后在执行查询操作
 			PreparedStatement pStatement = connection.prepareStatement(sql);
-			pStatement.setInt(1,bookId);
+			pStatement.setInt(1, bookId);
 			pStatement.executeUpdate();
 			dataList = selectBook();
 			return dataList;
@@ -107,6 +108,7 @@ public class UserDaoImpl implements UserDao {
 				rec.setBookId(rs.getInt(1));
 				rec.setBookName(rs.getString(2));
 				rec.setBookPrice(rs.getDouble(3));
+				rec.setBookThumb(rs.getString(4));
 				dataList.add(rec);
 			}
 

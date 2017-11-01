@@ -11,6 +11,16 @@ public class Book implements Serializable {
 	int bookId;
 	String bookName;
 	double bookPrice;
+	String bookThumb;
+	
+
+	public String getBookThumb() {
+		return bookThumb;
+	}
+
+	public void setBookThumb(String bookThumb) {
+		this.bookThumb = bookThumb;
+	}
 
 	public int getBookId() {
 		return bookId;
